@@ -1,10 +1,16 @@
 from abc import ABC, abstractmethod
-from application.interface import ProductInterface
+from app.interface import ProductInterface
+from typing import Optional
 
+# ServiceInterface
 class ProductServiceInterface(ABC):
 
     @abstractmethod
     def get(id: str) -> ProductInterface:
+        pass
+
+    @abstractmethod
+    def get_by_name(name: str) -> Optional[ProductInterface]:
         pass
 
     @abstractmethod
@@ -20,10 +26,15 @@ class ProductServiceInterface(ABC):
         pass
 
 
+# PersistenseInterfaces
 class ProductReader(ABC):
 
     @abstractmethod
-    def get(id: str) -> ProductInterface:
+    def get(id: str) -> Optional[ProductInterface]:
+        pass
+
+    @abstractmethod
+    def get_by_name(name: str) -> Optional[ProductInterface]:
         pass
 
 class ProductWriter(ABC):

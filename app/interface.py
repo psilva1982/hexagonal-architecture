@@ -7,10 +7,10 @@ DISABLE="disabled"
 class ProductInterface(ABC):
     
     def __init__(self, id: str, name: str, price: float):
-        self.id = id
+        self.__id = id
         self.name = name
         self.price = price
-        self.status = ENABLE if price > 0 else DISABLE
+        self.__status = ENABLE if price > 0 else DISABLE
 
     @abstractmethod
     def is_valid() -> bool:

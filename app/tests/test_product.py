@@ -3,9 +3,9 @@ from math import prod
 from tkinter import N
 from fastapi import FastAPI
 from starlette.testclient import TestClient
-from application.product import Product
-from application.interface import DISABLE, ENABLE
-from application.exceptions import ProductEnableError, ProductDisableError
+from app.product import Product
+from app.interface import DISABLE, ENABLE
+from app.exceptions import ProductEnableError, ProductDisableError
 import uuid
 
 class TestProduct():

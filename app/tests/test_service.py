@@ -3,12 +3,12 @@ from tkinter.messagebox import NO
 from unicodedata import name
 from unittest import mock
 import unittest
-from application.interface import ProductInterface
-from application.product import Product
-from application.services.interface import ProductPersistenceInterface
-from application.services.product import ProductService
+from app.interface import ProductInterface
+from app.product import Product
+from app.services.interface import ProductPersistenceInterface
+from app.services.product import ProductService
 import uuid 
-from application.interface import ENABLE
+from app.interface import ENABLE
 
 class TestProductService(unittest.TestCase):
 
@@ -24,8 +24,8 @@ class TestProductService(unittest.TestCase):
         service = ProductService(persistence=self.persistence)
 
         result = service.get(id=str(id))
-        assert result.id == self.product.id
-        assert result.name == self.product.name
+        assert result.get_id() == self.product.get_id()
+        assert result.get_name() == self.product.get_name()
 
     def test_create(self):
 
