@@ -1,10 +1,10 @@
 
 from application.product import Product
-from application.services.interface import ProductPersistenceInterface
+from application.services.interface import ProductPersistenceInterface, ProductServiceInterface
 from application.interface import ProductInterface
 import uuid
 
-class ProductService:
+class ProductService(ProductServiceInterface):
 
     def __init__(self, persistence: ProductPersistenceInterface):
         self.persistence = persistence
