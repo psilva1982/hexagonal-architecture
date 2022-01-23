@@ -1,5 +1,6 @@
 
 from math import prod
+from os import name
 from tkinter.messagebox import NO
 from app.interface import ProductInterface
 from app.product import Product
@@ -16,26 +17,23 @@ class ProductDb(ProductPersistenceInterface):
         self.products = deta.Base("products")
 
     def get(self, id: str) -> Optional[ProductInterface]:
-        try:
-            fetch_res = self.products.fetch({"id": id})
-            if len(fetch_res.items) > 0:
-                fetch = fetch_res.items[0]
-                product = Product(
-                    id=fetch['id'],
-                    name=fetch['name'],
-                    price=fetch['price']
-                )
+        fetch_res = self.products.fetch({"id": id})
+        if fetch_res.count > 0:
+            fetch = fetch_res.items[0]
+            product = Product(
+                id=fetch['id'],
+                name=fetch['name'],
+                price=fetch['price']
+            )
 
-                return product
-        except: 
-            return None
-        
+            return product
+
         return None
 
     def get_by_name(self, name: str) -> Optional[ProductInterface]:
                 
         fetch_res = self.products.fetch({"name": name})
-        if len(fetch_res.items) > 0:
+        if fetch_res.count > 0:
             fetch = fetch_res.items[0]
             product = Product(
                 id=fetch['id'],
@@ -47,12 +45,27 @@ class ProductDb(ProductPersistenceInterface):
         
         return None
 
-    def save(self, product: ProductInterface)-> ProductInterface:
+    def __create__(self, product: ProductInterface) -> ProductInterface:
+        print('Criando um novo produto...')
         self.products.insert({
-           "id": str(product.get_id()),
+           "id": product.get_id(),
            "name": product.name,
            "price": product.price,
            "status": product.get_status()
         })
 
         return product
+
+    def save(self, product: ProductInterface) -> ProductInterface:
+        
+        fetch_res = self.products.fetch({"name": product.name})
+        if fetch_res.count > 0: 
+            item = fetch_res.items[0]
+            self.products.update({
+                "id": product.get_id(),
+                "name": product.name,
+                "price": product.price                
+            }, item['key'])
+
+        else:
+            return self.__create__(product=product)

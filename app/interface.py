@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from uuid import uuid4
 
 ENABLE="enabled"
 DISABLE="disabled"

@@ -1,7 +1,4 @@
-from pickle import TRUE
-from tkinter import N
-from tkinter.messagebox import NO
-from uuid import uuid4
+
 from .interface import ProductInterface
 from .interface import ENABLE, DISABLE
 from app import exceptions
@@ -22,14 +19,14 @@ class Product(ProductInterface):
 
     def enable(self):
         if self.price > 0: 
-            self.__status = ENABLE
+            self._ProductInterface__status = ENABLE
 
         else: 
             raise exceptions.ProductEnableError
 
     def disable(self):
         if self.price <= 0: 
-           self.__status = DISABLE
+           self._ProductInterface__status = DISABLE
 
         else: 
             raise exceptions.ProductDisableError
@@ -38,10 +35,13 @@ class Product(ProductInterface):
         return self.name
 
     def get_id(self) -> str:
-        return self._ProductInterface__id
+        return str(self._ProductInterface__id)
 
     def get_price(self) -> float:
         return self.price
     
     def get_status(self) -> str:
         return self._ProductInterface__status
+
+    def __str__(self) -> str:
+        return self.get_name()
