@@ -46,7 +46,6 @@ class ProductDb(ProductPersistenceInterface):
         return None
 
     def __create__(self, product: ProductInterface) -> ProductInterface:
-        print('Criando um novo produto...')
         self.products.insert({
            "id": product.get_id(),
            "name": product.name,
@@ -62,7 +61,6 @@ class ProductDb(ProductPersistenceInterface):
         if fetch_res.count > 0: 
             item = fetch_res.items[0]
             self.products.update({
-                "id": product.get_id(),
                 "name": product.name,
                 "price": product.price                
             }, item['key'])
