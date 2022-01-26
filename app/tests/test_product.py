@@ -1,8 +1,3 @@
-from itertools import product
-from math import prod
-from tkinter import N
-from fastapi import FastAPI
-from starlette.testclient import TestClient
 from app.product import Product
 from app.interface import DISABLE, ENABLE
 from app.exceptions import ProductEnableError, ProductDisableError

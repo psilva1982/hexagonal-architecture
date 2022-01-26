@@ -1,5 +1,3 @@
-
-from os import name
 import unittest
 from adapters.database.product import ProductDb
 from app.services.product import ProductService

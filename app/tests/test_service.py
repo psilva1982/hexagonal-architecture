@@ -1,9 +1,5 @@
-from math import prod
-from tkinter.messagebox import NO
-from unicodedata import name
 from unittest import mock
 import unittest
-from app.interface import ProductInterface
 from app.product import Product
 from app.services.interface import ProductPersistenceInterface
 from app.services.product import ProductService

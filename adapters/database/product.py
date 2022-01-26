@@ -1,7 +1,5 @@
 
-from math import prod
 from os import name
-from tkinter.messagebox import NO
 from app.interface import ProductInterface
 from app.product import Product
 from app.services.interface import ProductPersistenceInterface
@@ -11,7 +9,7 @@ from typing import Optional
 
 class ProductDb(ProductPersistenceInterface):
 
-    def __init__(self) -> None:
+    def __init__(self):
         project_key = config('DB_KEY')
         deta = Deta(project_key)
         self.products = deta.Base("products")
