@@ -14,6 +14,15 @@ class ProductDb(ProductPersistenceInterface):
         deta = Deta(project_key)
         self.products = deta.Base("products")
 
+    def get_all(self) -> list:
+
+        fetch_res = self.products.fetch({})
+        products = []
+        for item in fetch_res.items:
+            products.append(item)
+
+        return products
+
     def get(self, id: str) -> Optional[ProductInterface]:
         fetch_res = self.products.fetch({"id": id})
         if fetch_res.count > 0:

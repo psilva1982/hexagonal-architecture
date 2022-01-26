@@ -10,6 +10,10 @@ class ProductServiceInterface(ABC):
         pass
 
     @abstractmethod
+    def get_all() -> list:
+        pass
+
+    @abstractmethod
     def get_by_name(name: str) -> Optional[ProductInterface]:
         pass
 
@@ -35,6 +39,10 @@ class ProductReader(ABC):
 
     @abstractmethod
     def get_by_name(name: str) -> Optional[ProductInterface]:
+        pass
+
+    @abstractmethod
+    def get_all() -> list:
         pass
 
 class ProductWriter(ABC):

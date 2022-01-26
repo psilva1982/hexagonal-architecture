@@ -16,6 +16,9 @@ class ProductService(ProductServiceInterface):
     def get_by_name(self, name: str) -> Optional[ProductInterface]:
         return self.__persistence.get_by_name(name=name)
 
+    def get_all(self) -> list:
+        return self.__persistence.get_all()
+
     def create(self, name: str, price: float) -> ProductInterface:
         product = Product(id=uuid.uuid4(), name=name, price=price) 
         return self.__persistence.save(product=product)
